@@ -10,7 +10,7 @@ class Transition {
 }
 
 class Automaton {
-    constructor(public states: State[], public transitions: Transition[]) { }
+    constructor(public states: State[], public transitions: Transition[], public start: State, public end: State) { }
 
     getTransitionsForState(state: State): Transition[] {
         throw Error("TODO!")
@@ -30,7 +30,7 @@ function convertFragmentToAutomaton(fragment: FragmentNode): Automaton {
     const start_state = new State("start")
     const end_state = new State("end")
     const transition = new Transition(start_state, end_state, fragment.symbol)
-    const automaton = new Automaton([start_state, end_state], [transition])
+    const automaton = new Automaton([start_state, end_state], [transition], start_state, end_state)
 
     return automaton
     // throw Error("TODO!")
