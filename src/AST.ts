@@ -31,7 +31,7 @@ function walkCompositionAST(ast: CompositionAST) {
         const lt = new Transition(start_state, lm.start, "EPSILON")
         const rt = new Transition(start_state, rm.start, "EPSILON")
 
-        automaton = new Automaton([start_state, end_state], [lt, rt], start_state, end_state)
+        automaton = new Automaton([start_state, end_state], [lt, rt, ...lm.transitions, ...rm.transitions], start_state, end_state)
     }
 
     if (!automaton) {
