@@ -1,4 +1,4 @@
-import type { FragmentNode } from "./fragments";
+import type { FragmentNode } from "./AST";
 
 
 class State {
@@ -25,10 +25,16 @@ class Automaton {
     }
 }
 
-function constructAutomatonFromFragment(fragment: FragmentNode): Automaton {
+function convertFragmentToAutomaton(fragment: FragmentNode): Automaton {
     // fragment AST -> ε-NFA (using Thompson's construction)
-    throw Error("TODO!")
+    const start_state = new State("start")
+    const end_state = new State("end")
+    const transition = new Transition(start_state, end_state, fragment.symbol)
+    const automaton = new Automaton([start_state, end_state], [transition])
+
+    return automaton
+    // throw Error("TODO!")
 }
 
 
-export { State, Transition, Automaton }
+export { State, Transition, Automaton, convertFragmentToAutomaton }
